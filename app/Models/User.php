@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,10 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nama',
-        'role',
-        'email',
+        'name',
+        'username',
         'password',
+        'profile_image'
     ];
 
     /**
@@ -41,6 +41,14 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
+
+    public function scopeSearch($query)
+    {
+        if (request('search')) {
+            return $query->where('name', 'like', '%' . request('search') . '%')
+                        ->orWhere('username', 'like', '%' . request('search') . '%')
+                        ->orWhere('role', 'like', '%' . request('search') . '%');
+        }
+    }
 }
