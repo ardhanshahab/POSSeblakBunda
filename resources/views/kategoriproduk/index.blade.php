@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="d-flex justify-content-end">
-                <a href="#" class="btn btn-md click-primary mx-4" data-toggle="modal" data-target="#modalTambahKategori" data-placement="top" title="Tambah kategori produk">Data Kategori Produk</a>
+                <a href="#" class="btn btn-md click-primary mx-4" data-bs-toggle="modal" data-bs-target="#modalTambahKategori" data-placement="top" title="Tambah kategori produk">Data Kategori Produk</a>
             </div>
             <div class="card m-4" id="peserta">
                 <div class="card-body table-responsive">
