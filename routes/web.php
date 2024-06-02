@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/cashier',[App\Http\Controllers\orderController::class,'cashier']);
 Route::get('/getKategoriProduk',[App\Http\Controllers\kategoriprodukController::class,'getKategoriProduk'])->name('getKategoriProduk');
 Route::get('/getProduk',[App\Http\Controllers\produkController::class,'getProduk'])->name('getProduk');
@@ -29,6 +25,7 @@ Route::get('/getOrder',[App\Http\Controllers\orderController::class,'getOrder'])
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 
 Route::resource('/master/kategoriproduk', \App\Http\Controllers\kategoriprodukController::class);
 Route::resource('/master/produk', \App\Http\Controllers\produkController::class);

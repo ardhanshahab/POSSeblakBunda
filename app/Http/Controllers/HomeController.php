@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\produk;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -25,4 +26,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function welcome()
+    {
+        $produk = Produk::take(6)->get(); // Mengambil hanya 6 produk
+        return view('welcome', compact('produk')); // Meneruskan data produk ke view
+    }
+
 }
