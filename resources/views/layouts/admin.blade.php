@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>SEBLAK BUNDA</title>
+        <title>SEBLAK BUNDA Raziel</title>
         {{-- <link rel="shortcut icon" href="{{ $app_logo }}" type="image/x-icon"> --}}
         <!-- General CSS Files -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -282,7 +282,7 @@
             <div class="sidebar close">
                 <div class="logo-details">
                   <i class='bx bxl-c-plus-plus'></i>
-                  <span class="logo_name">Seblak Bunda</span>
+                  <span class="logo_name">Seblak Bunda Raziel</span>
                 </div>
                 <ul class="nav-links">
                   <li>
@@ -347,7 +347,7 @@
               <section class="home-section">
                 <div class="home-content">
                   <i class='bx bx-menu' ></i>
-                  <span class="text">Seblak Bunda</span>
+                  <span class="text">Seblak Bunda Raziel</span>
                 </div>
                     @yield('content')
               </section>

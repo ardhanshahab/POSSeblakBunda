@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Delfood</title>
+  <title>Seblak Bunda Nazriel</title>
 
 
   <!-- bootstrap core css -->
@@ -46,7 +46,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container">
           <a class="navbar-brand" href="index.html">
             <span>
-              Seblak Bunda
+              Seblak Bunda Raziel
             </span>
           </a>
           <div class="" id="">
@@ -85,10 +85,10 @@
           <div class="col-lg-10 mx-auto">
             <div class="detail-box">
               <h1>
-                Seblak Bunda
+                Seblak Bunda Raziel
               </h1>
               <p>
-                when looking at its layout. The point of using Lorem Ipsum
+                Seblak Terenak Sejaga Raya
               </p>
             </div>
             {{-- <div class="find_container ">
@@ -120,48 +120,7 @@
           </div>
         </div>
       </div>
-      <div class="slider_container">
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img1.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img2.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img3.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img4.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img1.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img2.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img3.png" alt="" />
-          </div>
-        </div>
-        <div class="item">
-          <div class="img-box">
-            <img src="images/slider-img4.png" alt="" />
-          </div>
-        </div>
-      </div>
+
     </section>
     <!-- end slider section -->
   </div>
@@ -181,7 +140,7 @@
         <div class="col-sm-6 col-md-4 mx-auto">
             <div class="box">
               <div class="img-box">
-                <img src="/storage/posts/{{ $item->image }}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+                <img src="/storage/posts/{{ $item->image }}" alt="Product Image" style="width: 250px; height: auto;">
               </div>
               <div class="detail-box">
                 <h4>
