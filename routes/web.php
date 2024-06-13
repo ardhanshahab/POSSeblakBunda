@@ -31,3 +31,13 @@ Route::resource('/master/kategoriproduk', \App\Http\Controllers\kategoriprodukCo
 Route::resource('/master/produk', \App\Http\Controllers\produkController::class);
 Route::resource('/master/meja', \App\Http\Controllers\mejaController::class);
 Route::resource('/order', \App\Http\Controllers\orderController::class);
+
+Route::get('/listmenu', [App\Http\Controllers\pelangganController::class, 'index'])->name('listmenu');
+
+Route::get('cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+Route::post('cart/add/{product}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+Route::post('cart/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+Route::post('cart/clear', [App\Http\Controllers\CartController::class, 'clear'])->name('cart.clear');
+
+Route::post('pembayaran', [App\Http\Controllers\pembayaranController::class, 'store'])->name('pembayaran.store');
+Route::get('/index', [App\Http\Controllers\pembayaranController::class, 'index'])->name('pembayaran.index');

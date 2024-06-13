@@ -1,92 +1,156 @@
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>SEBLAK BUNDA</title>
-        {{-- <link rel="shortcut icon" href="{{ $app_logo }}" type="image/x-icon"> --}}
-        <!-- General CSS Files -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <!-- Basic -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Site Metas -->
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
 
-        <!-- CSS Libraries -->
+        <title>Seblak Bunda Nazriel</title>
 
-        <!-- Template CSS -->
-        {{-- <link rel="stylesheet" href="{{ asset('stisla') }}/modules/owlcarousel2/owl.carousel.min.css"> --}}
-        {{-- <link rel="stylesheet" href="{{ asset('stisla') }}/modules/owlcarousel2/owl.theme.default.min.css"> --}}
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-        {{-- <link rel="stylesheet" href="{{ asset('stisla') }}/css/style.css"> --}}
-        {{-- <link rel="stylesheet" href="{{ asset('stisla') }}/css/components.css"> --}}
-        <link rel="stylesheet" type="text/css" href="{{ asset('datatables') }}/datatables.min.css"/>
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
-        @stack('css')
-    </head>
+
+        <!-- bootstrap core css -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}" />
+
+        <!-- fonts style -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
+        <!-- font awesome style -->
+        <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" />
+        <!-- nice select -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+        <!-- slidck slider -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css.map" integrity="undefined" crossorigin="anonymous" />
+
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
+        <!-- responsive style -->
+        <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
+
+      </head>
     <body>
-        <div class="container-fluid mt-2">
+        <div class="hero_area">
+            <!-- header section strats -->
+            <header class="header_section">
+              <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container">
+                  <a class="navbar-brand" href="index.html">
+                    <span>
+                      Seblak Bunda Raziel
+                    </span>
+                  </a>
+                  <div class="" id="">
+                    <div class="User_option">
+                      <a href="/login">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span>Login Pegawai</span>
+                      </a>
+                      {{-- <form class="form-inline ">
+                        <input type="search" placeholder="Search" />
+                        <button class="btn  nav_search-btn" type="submit">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                      </form> --}}
+                    </div>
+                    {{-- <div class="custom_menu-btn">
+                      <button onclick="openNav()">
+                        <img src="images/menu.png" alt="">
+                      </button>
+                    </div> --}}
+                    {{-- <div id="myNav" class="overlay">
+                      <div class="overlay-content">
+                        <a href="index.html">Login Pegawai</a>
+                      </div>
+                    </div> --}}
+                  </div>
+                </nav>
+              </div>
+            </header>
+            <!-- end header section -->
+
+            <!-- slider section -->
+            <section class="slider_section ">
+              <div class="container ">
+                <div class="row">
+                  <div class="col-lg-10 mx-auto">
+                    <div class="detail-box">
+                      <h1>
+                        Seblak Bunda Raziel
+                      </h1>
+                      <p>
+                        Seblak Terenak Sejaga Raya
+                      </p>
+                    </div>
+                    {{-- <div class="find_container ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col">
+                            <form>
+                              <div class="form-row ">
+                                <div class="form-group col-lg-5">
+                                  <input type="text" class="form-control" id="inputHotel" placeholder="Restaurant Name">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                  <input type="text" class="form-control" id="inputLocation" placeholder="All Locations">
+                                  <span class="location_icon">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                  </span>
+                                </div>
+                                <div class="form-group col-lg-3">
+                                  <div class="btn-box">
+                                    <button type="submit" class="btn ">Search</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> --}}
+                  </div>
+                </div>
+              </div>
+
+            </section>
+            <!-- end slider section -->
+          </div>
+        <div class="container-fluid" style="margin-top: 8px; margin-bottom:48px; padding-bottom:15px">
             @yield('content')
         </div>
 
-  <!-- General JS Scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script type="text/javascript" src="{{ asset('datatables') }}/datatables.min.js"></script>
-  <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
-  <script src="/vendor/datatables/buttons.server-side.js"></script>
-  {{-- <script src="{{ asset('stisla') }}/js/stisla.js"></script> --}}
+        <div class="footer_container">
+            <!-- footer section -->
+            <footer class="footer_section">
+              <div class="container">
+                <p>
+                  &copy; <span id="displayYear"></span> All Rights Reserved By
+                  <a href="https://html.design/">Free Html Templates</a><br>
+                  Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
+                </p>
+              </div>
+            </footer>
+            <!-- footer section -->
 
-  <!-- JS Libraies -->
+          </div>
 
-  <!-- Template JS File -->
-  {{-- <script src="{{ asset('stisla') }}/modules/owlcarousel2/owl.carousel.min.js"></script>
-  <script src="{{ asset('stisla') }}/modules/summernote/summernote-bs4.js"></script>
-  <script src="{{ asset('stisla') }}/js/scripts.js"></script>
-  <script src="{{ asset('stisla') }}/js/custom.js"></script> --}}
-  {{-- <script src="{{ asset('stisla') }}/js/page/modules-datatables.js"></script> --}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <!-- jQery -->
+    <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>
+    <!-- bootstrap js -->
+    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <!-- slick  slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js{{ asset('assets/css/bootstrap.css') }}"></script>
+    <!-- nice select -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+    <!-- custom js -->
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
 
-  <script>
-    $(() => {
-      $("#table-1").dataTable({
-        responsive : true
-      });
-    })
-
-    function hapus(url){
-      swal({
-        title: "{{ __('message.dialog_title') }}",
-        text: "{{ __('message.dialog_delete') }}",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          window.location.href = url;
-        }
-      });
-    }
-
-    $('.btn-delete').click(function(e) {
-      e.preventDefault();
-      var url = $(this).attr('href');
-      swal({
-        title: "{{ __('message.dialog_title') }}",
-        text: "{{ __('message.dialog_delete') }}",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          window.location.href = url;
-        }
-      });
-    });
-  </script>
   @stack('js')
     </body>
 </html>

@@ -58,6 +58,7 @@ class produkController extends Controller
             'nama_produk'     => 'required|min:1',
             'kategori_produk' => 'required|min:1',
             'harga'           => 'required|numeric|min:1',
+            'quantity'           => 'required|numeric',
             'deskripsi'       => 'required|min:1'
         ]);
 
@@ -71,7 +72,8 @@ class produkController extends Controller
             'nama_produk'     => $request->nama_produk,
             'kategori_produk' => $request->kategori_produk,
             'harga'           => $request->harga,
-            'deskripsi'       => $request->deskripsi
+            'deskripsi'       => $request->deskripsi,
+            'quantity'       => $request->quantity
         ]);
 
         // Redirect to index
@@ -127,6 +129,7 @@ class produkController extends Controller
             'nama_produk'     => 'required|min:1',
             'kategori_produk' => 'required|min:1',
             'harga'           => 'required|numeric|min:1',
+            'quantity'           => 'required|numeric',
             'deskripsi'       => 'required|min:1'
         ]);
 
@@ -138,7 +141,8 @@ class produkController extends Controller
                 'nama_produk'     => $request->nama_produk,
                 'kategori_produk' => $request->kategori_produk,
                 'harga'           => $request->harga,
-                'deskripsi'       => $request->deskripsi
+                'deskripsi'       => $request->deskripsi,
+                'quantity'       => $request->quantity
             ]);
         return response()->json([
             'success' => true,

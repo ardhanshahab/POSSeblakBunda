@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kategori_produk');
             $table->string('deskripsi');
             $table->string('harga');
+            $table->string('quantity');
             $table->string('image');
             $table->timestamps();
         });

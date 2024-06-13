@@ -14,5 +14,6 @@ class produk extends Model
         'kategori_produk',
         'harga',
         'deskripsi',
+        'quantity',
     ];
 }
