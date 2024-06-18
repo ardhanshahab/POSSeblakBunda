@@ -46,6 +46,7 @@
                                         @endforeach
                                     </select>
                                     @foreach ($cartItems as $item)
+                                        <input type="hidden" name="products[{{ $item->id }}][product_id]" value="{{ $item->id }}">
                                         <input type="hidden" name="products[{{ $item->id }}][name]" value="{{ $item->name }}">
                                         <input type="hidden" name="products[{{ $item->id }}][quantity]" value="{{ $item->quantity }}">
                                         <input type="hidden" name="products[{{ $item->id }}][price]" value="{{ $item->price }}">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.welcome')
 @section('content')
   <section class="recipe_section layout_padding-top">
     <div class="container">

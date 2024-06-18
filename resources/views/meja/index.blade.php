@@ -201,7 +201,7 @@ $(document).ready(function(){
                     actions += '<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>';
                     actions += '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
                     actions += '<a class="dropdown-item" href="#" onclick="openEditModal(' + row.no_meja + ', \'' + row.status + '\')">Edit</a>';
-                    actions += '<form onsubmit="return confirm(\'Apakah Anda Yakin ?\');" action="/meja/' + row.id + '" method="POST">';
+                    actions += '<form onsubmit="return confirm(\'Apakah Anda Yakin ?\');" action="/master/meja/' + row.id + '" method="POST">';
                     actions += '<input type="hidden" name="_method" value="DELETE">';
                     actions += '<input type="hidden" name="_token" value="' + '{{ csrf_token() }}' + '">';
                     actions += '<button type="submit" class="dropdown-item">Hapus</button>';

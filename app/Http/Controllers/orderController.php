@@ -7,7 +7,11 @@ use App\Models\meja;
 use App\Models\order;
 use App\Models\OrderDetail;
 use App\Models\produk;
+use App\Models\fcfs;
 use Illuminate\Http\Request;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Session;
 
 class orderController extends Controller
 {
@@ -49,6 +53,7 @@ class orderController extends Controller
             $order->no_meja = $request->orders[0]['no_meja'];
             $order->invoice_number = 'INV-' . time();
             $order->amount = $request->amount;
+            $order->status = 'Proses Pembuatan Pesanan';
             $order->save();
 
             foreach ($request->orders as $orderItem) {
@@ -73,6 +78,29 @@ class orderController extends Controller
             $post->update([
                 'status'     => 'Terisi',
             ]);
+
+            $order = Fcfs::create([
+                'invoice_number' =>  $order->invoice_number,
+            ]);
+
+            // Set order time when the order is created
+            $order->setOrderTime();
+
+            $data = [
+                'products' => $request->orders,
+                'total' => $order->amount,
+                'meja' => $order->no_meja
+            ];
+
+            // Generate PDF
+            $pdf = Pdf::loadView('cart.struk', $data);
+
+            // Simpan data ke session untuk diambil di halaman index
+            session(['payment_data' => $data]);
+
+            // Simpan PDF sementara dan buat respons unduhan
+            $pdfPath = storage_path('app/public/receipt.pdf');
+            $pdf->save($pdfPath);
 
             return response()->json(['message' => 'Order successfully created', 'order' => $order], 201);
         } catch (\Exception $e) {

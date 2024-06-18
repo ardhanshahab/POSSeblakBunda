@@ -193,21 +193,24 @@ $(document).ready(function(){
             {
                 "data": null,
                 "render": function(data, type, row) {
-                    var actions = ''
+                    var actions = '';
                     actions += '<div class="dropdown">';
                     actions += '<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>';
                     actions += '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
                     actions += '<a class="dropdown-item" href="#" onclick="openEditModal(' + row.id + ', \'' + row.nama_kategori + '\')">Edit</a>';
-                    actions += '<form onsubmit="return confirm(\'Apakah Anda Yakin ?\');" action="/kategoriproduk/' + row.id + '" method="POST">';
+                    actions += '<div>';
+                    actions += '<form onsubmit="event.preventDefault(); if(confirm(\'Apakah Anda Yakin ?\')) { this.submit(); }" action="/master/kategoriproduk/' + row.id + '" method="POST">';
                     actions += '<input type="hidden" name="_method" value="DELETE">';
                     actions += '<input type="hidden" name="_token" value="' + '{{ csrf_token() }}' + '">';
                     actions += '<button type="submit" class="dropdown-item">Hapus</button>';
                     actions += '</form>';
                     actions += '</div>';
                     actions += '</div>';
+                    actions += '</div>';
                     return actions;
                 }
             }
+
         ],
     });
 

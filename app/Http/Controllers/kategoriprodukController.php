@@ -127,7 +127,7 @@ class kategoriprodukController extends Controller
         $post = kategoriproduk::findOrFail($id);
 
         //delete image
-        Storage::delete('public/posts/'. $post->image);
+        // Storage::delete('public/posts/'. $post->image);
 
         //delete post
         $post->delete();

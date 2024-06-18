@@ -9,6 +9,7 @@
     @endif
     <div class="row">
         <div class="col-md-8">
+            <a href="/" class="btn btn-primary">Back</a>
             <div class="row">
                 <div class="col-md-12 d-flex justify-content-center">
                     <img src="{{ asset('assets/images/qris.png') }}" alt="qris" style="max-width: 500px">

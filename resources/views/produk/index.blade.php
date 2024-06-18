@@ -100,41 +100,38 @@
                 </div>
                 <div class="modal-body">
                     <!-- Isi form Edit kategori produk di sini -->
-                    <form id="formEditKategori" method="POST">
+                    <form action="{{ route('produk.update', ':id') }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <input type="hidden" name="id_produk" id="id_produk" value="">
+                            <input type="hidden" name="id_produk" id="id_produk">
                             <label for="nama_produk">Nama Produk</label>
                             <input type="text" class="form-control" id="nama_produk_edit" name="nama_produk" required>
                         </div>
                         <div class="form-group">
-                            <label for="kategori_produk">Kategori Produk</label>
-                            <select name="kategori_produk_edit" id="kategori_produk" class="form-control">
-                                <option selected>Pilih Kategori Menu</option>
-                                @foreach ( $posts as $post)
-                                <option value="{{ $post->nama_kategori }}">{{ $post->nama_kategori }}</option>
+                            <label for="kategori_produk_edit">Kategori Produk</label>
+                            <select name="kategori_produk_edit" id="kategori_produk_edit" class="form-control">
+                                <option selected disabled>Pilih Kategori Menu</option>
+                                @foreach ($posts as $post)
+                                    <option value="{{ $post->nama_kategori }}">{{ $post->nama_kategori }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="harga">Harga</label>
+                            <label for="harga_edit">Harga</label>
                             <input type="text" class="form-control" id="harga_edit" name="harga" required>
                         </div>
                         <div class="form-group">
-                            <label for="deskripsi">Deskrkipsi</label>
+                            <label for="deskripsi_edit">Deskripsi</label>
                             <input type="text" class="form-control" id="deskripsi_edit" name="deskripsi" required>
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="image">Image</label>
-                            <input type="file" class="form-control" id="image_edit" name="image">
-                        </div> --}}
-                        <button type="button" class="btn btn-primary" onclick="updateProduk()">Simpan</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 
@@ -220,7 +217,7 @@
         var deskripsi = $('#deskripsi_edit').val();
 
         $.ajax({
-            url: "{{ route('produk.update', ':id') }}".replace(':id', id),
+            url: "{{ url('/master/produk') }}/" + id,
             type: 'PUT',
             data: {
                 _token: '{{ csrf_token() }}',
@@ -240,17 +237,12 @@
         });
     }
 
-
-
-
     function openEditModal(id, nama_produk, kategori_produk, harga, deskripsi) {
-        $('#id__produk').val(id);
+        $('#id_produk').val(id);
         $('#nama_produk_edit').val(nama_produk);
         $('#kategori_produk_edit').val(kategori_produk);
         $('#harga_edit').val(harga);
         $('#deskripsi_edit').val(deskripsi);
-        // $('#formEditKategori').attr('action', '/masters/produk/' + id);
-
 
         // Menampilkan modal edit produk
         $('#modalEditProduk').modal('show');
@@ -284,7 +276,7 @@
                         actions += '<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>';
                         actions += '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
                         actions += '<a class="dropdown-item" href="#" onclick="openEditModal(' + row.id + ', \'' + row.nama_produk + '\', \'' + row.kategori_produk + '\', \'' + row.harga + '\', \'' + row.deskripsi + '\')">Edit</a>';
-                        actions += '<form onsubmit="return confirm(\'Apakah Anda Yakin ?\');" action="/kategoriproduk/' + row.id + '" method="POST">';
+                        actions += '<form onsubmit="return confirm(\'Apakah Anda Yakin ?\');" action="/master/produk/' + row.id + '" method="POST">';
                         actions += '<input type="hidden" name="_method" value="DELETE">';
                         actions += '<input type="hidden" name="_token" value="' + '{{ csrf_token() }}' + '">';
                         actions += '<button type="submit" class="dropdown-item">Hapus</button>';

@@ -32,112 +32,53 @@
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
         <!-- responsive style -->
         <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
+        <style>
+            header {
+                display: flex;
+                justify-content: space-between;
+                padding: 16px 24px;
+                align-items: center;
+                background-color: #4855fe;
+                }
 
+                #page_title {
+                font-size: 18px;
+                font-weight: 600;
+                color: white;
+                letter-spacing: .25px;
+                }
+
+                #addBtn {
+                padding: 8px 24px;
+                border-radius: 4px;
+                font-weight: bold;
+                font-size: 14px;
+                text-transform: uppercase;
+                cursor: pointer;
+                }
+
+                #addBtn {
+                background-color: lightskyblue;
+                border: none;
+                }
+        </style>
       </head>
     <body>
-        <div class="hero_area">
-            <!-- header section strats -->
-            <header class="header_section">
-              <div class="container-fluid">
-                <nav class="navbar navbar-expand-lg custom_nav-container">
-                  <a class="navbar-brand" href="index.html">
-                    <span>
-                      Seblak Bunda Raziel
-                    </span>
-                  </a>
-                  <div class="" id="">
-                    <div class="User_option">
-                      <a href="/login">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <span>Login Pegawai</span>
-                      </a>
-                      {{-- <form class="form-inline ">
-                        <input type="search" placeholder="Search" />
-                        <button class="btn  nav_search-btn" type="submit">
-                          <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-                      </form> --}}
-                    </div>
-                    {{-- <div class="custom_menu-btn">
-                      <button onclick="openNav()">
-                        <img src="images/menu.png" alt="">
-                      </button>
-                    </div> --}}
-                    {{-- <div id="myNav" class="overlay">
-                      <div class="overlay-content">
-                        <a href="index.html">Login Pegawai</a>
-                      </div>
-                    </div> --}}
-                  </div>
-                </nav>
-              </div>
-            </header>
-            <!-- end header section -->
-
-            <!-- slider section -->
-            <section class="slider_section ">
-              <div class="container ">
-                <div class="row">
-                  <div class="col-lg-10 mx-auto">
-                    <div class="detail-box">
-                      <h1>
-                        Seblak Bunda Raziel
-                      </h1>
-                      <p>
-                        Seblak Terenak Sejaga Raya
-                      </p>
-                    </div>
-                    {{-- <div class="find_container ">
-                      <div class="container">
-                        <div class="row">
-                          <div class="col">
-                            <form>
-                              <div class="form-row ">
-                                <div class="form-group col-lg-5">
-                                  <input type="text" class="form-control" id="inputHotel" placeholder="Restaurant Name">
-                                </div>
-                                <div class="form-group col-lg-3">
-                                  <input type="text" class="form-control" id="inputLocation" placeholder="All Locations">
-                                  <span class="location_icon">
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                  </span>
-                                </div>
-                                <div class="form-group col-lg-3">
-                                  <div class="btn-box">
-                                    <button type="submit" class="btn ">Search</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div> --}}
-                  </div>
+        <header>
+            <h1 id="page_title">Seblak Bunda Nazriel</h1>
+            <button id="addBtn">Add Item</button>
+        </header>
+        <div class="container mt-2">
+            <div class="row">
+                <div class="container-fluid" style="margin-top: 8px; margin-bottom:48px; padding-bottom:15px">
+                    @yield('content')
                 </div>
-              </div>
-
-            </section>
-            <!-- end slider section -->
-          </div>
-        <div class="container-fluid" style="margin-top: 8px; margin-bottom:48px; padding-bottom:15px">
-            @yield('content')
+            </div>
         </div>
 
-        <div class="footer_container">
-            <!-- footer section -->
-            <footer class="footer_section">
-              <div class="container">
-                <p>
-                  &copy; <span id="displayYear"></span> All Rights Reserved By
-                  <a href="https://html.design/">Free Html Templates</a><br>
-                  Distributed By: <a href="https://themewagon.com/">ThemeWagon</a>
-                </p>
-              </div>
-            </footer>
-            <!-- footer section -->
 
-          </div>
+
+
 
     <!-- jQery -->
     <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>

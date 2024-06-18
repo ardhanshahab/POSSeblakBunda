@@ -41,3 +41,5 @@ Route::post('cart/clear', [App\Http\Controllers\CartController::class, 'clear'])
 
 Route::post('pembayaran', [App\Http\Controllers\pembayaranController::class, 'store'])->name('pembayaran.store');
 Route::get('/index', [App\Http\Controllers\pembayaranController::class, 'index'])->name('pembayaran.index');
+Route::post('completeOrder/{id}', [App\Http\Controllers\HomeController::class, 'completeOrder'])->name('completeOrder');
+Route::post('customerLeft/{id}', [App\Http\Controllers\HomeController::class, 'customerLeft'])->name('customerLeft');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('invoice_number');
             $table->string('no_meja')->nullable();
             $table->string('amount');
+            $table->string('status');
             $table->timestamps();
         });
     }
