@@ -10,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>Seblak Bunda Nazriel</title>
+        <title>Seblak Bunda Raziel</title>
 
 
         <!-- bootstrap core css -->
@@ -65,8 +65,8 @@
       </head>
     <body>
         <header>
-            <h1 id="page_title">Seblak Bunda Nazriel</h1>
-            <button id="addBtn">Add Item</button>
+            <h1 id="page_title">Seblak Bunda Raziel</h1>
+            {{-- <button id="addBtn">Add Item</button> --}}
         </header>
         <div class="container mt-2">
             <div class="row">

@@ -122,33 +122,37 @@ class produkController extends Controller
      * @param  mixed $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        // dd($request->all());
         //validate form
         $this->validate($request, [
             'nama_produk'     => 'required|min:1',
-            'kategori_produk' => 'required|min:1',
+            'kategori_produk_edit' => 'required|min:1',
             'harga'           => 'required|numeric|min:1',
-            'quantity'           => 'required|numeric',
+            // 'quantity'           => 'required|numeric',
             'deskripsi'       => 'required|min:1'
         ]);
 
         //get post by ID
-        $post = produk::findOrFail($id);
+        $post = produk::findOrFail($request->id_produk);
 
             //update post without image
             $post->update([
                 'nama_produk'     => $request->nama_produk,
-                'kategori_produk' => $request->kategori_produk,
+                'kategori_produk' => $request->kategori_produk_edit,
                 'harga'           => $request->harga,
                 'deskripsi'       => $request->deskripsi,
-                'quantity'       => $request->quantity
+                // 'quantity'       => $request->quantity
             ]);
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Berhasil diupdate',
-            'data' => $post,
-        ]);
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Data Berhasil diupdate',
+        //     'data' => $post,
+        // ]);
+
+        return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Diupdate!']);
+
     }
 
     /**

@@ -31,6 +31,21 @@ class orderController extends Controller
         ]);
     }
 
+    public function getOrderDetail($invoice_number)
+    {
+        // Ambil order berdasarkan invoice_number
+        $order = Order::where('invoice_number', $invoice_number)->first();
+        if (!$order) {
+            return response()->json(['message' => 'Order not found'], 404);
+        }
+
+        // Ambil detail order
+        $orderDetails = OrderDetail::with('produk')->where('order_id', $order->id)->get();
+
+        return response()->json($orderDetails);
+    }
+
+
     public function cashier()
     {
         $data['product']  = produk::all();

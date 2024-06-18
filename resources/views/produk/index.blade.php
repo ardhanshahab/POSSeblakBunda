@@ -100,7 +100,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Isi form Edit kategori produk di sini -->
-                    <form action="{{ route('produk.update', ':id') }}" method="POST">
+                    <form action="{{ route('updateProduk') }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">

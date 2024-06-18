@@ -10,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>Seblak Bunda Nazriel</title>
+        <title>Seblak Bunda Raziel</title>
 
 
         <!-- bootstrap core css -->

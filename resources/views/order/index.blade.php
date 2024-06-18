@@ -40,61 +40,31 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalTambahMeja" tabindex="-1" role="dialog" aria-labelledby="modalTambahMejaTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Modal Order Detail -->
+    <div class="modal fade" id="orderDetailModal" tabindex="-1" aria-labelledby="orderDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTambahMejaTitle">Tambah Meja</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title" id="orderDetailModalLabel">Order Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Isi form tambah kategori produk di sini -->
-                    <form action="{{ route('meja.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="no_meja">Nomor Meja</label>
-                            <input type="text" class="form-control" id="no_meja" name="no_meja" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </form>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderDetailBody">
+                            <!-- Details will be injected here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="modalEditMeja" tabindex="-1" role="dialog" aria-labelledby="modalEditMejaTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalEditMejaTitle">Edit Status Meja</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Isi form Edit kategori produk di sini -->
-                    <form id="formEditmeja" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <input type="hidden" name="id_meja" id="id_meja" value="">
-                            <label for="status_edit">Status Meja</label>
-                            <select name="status_edit" id="status_edit" class="form-select">
-                                <option value="Terisi">Terisi</option>
-                                <option value="Kosong">Kosong</option>
-                            </select>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="updateKategori()">Simpan</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
 </div>
 <style>
     .loader {
@@ -150,41 +120,8 @@
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
 <script>
-    function updateKategori() {
-        var id = $('#id_meja').val();
-        var status = $('#status_edit').val();
-
-        $.ajax({
-            url: "{{ route('meja.update', ':id') }}".replace(':id', id),
-            type: 'PUT',
-            data: {
-                _token: '{{ csrf_token() }}',
-                status: status
-            },
-            success: function(response) {
-                console.log(response);
-                $('#modalEditMeja').modal('hide');
-                location.reload();
-            },
-            error: function(xhr) {
-                console.error(xhr.responseText);
-            }
-        });
-    }
-
-    function openEditModal(id, status) {
-        $('#status_edit').val(status);
-        $('#id_meja').val(id);
-        // Mengubah atribut action pada form untuk menyimpan perubahan pada kategori dengan id tertentu
-        // $('#formEditmeja').attr('action', '/meja/' + id);
-
-        // Menampilkan modal edit kategori
-        $('#modalEditMeja').modal('show');
-    }
-
-
 $(document).ready(function(){
-    $('#pesertatable').DataTable({
+    var table = $('#pesertatable').DataTable({
         "processing": true,
         "ajax": {
             "url": "{{ route('getOrder') }}", // URL API untuk mengambil data
@@ -197,9 +134,44 @@ $(document).ready(function(){
         ],
     });
 
+    $('#pesertatable tbody').on('click', 'tr', function () {
+        var data = table.row(this).data();
+        var invoiceNumber = data.invoice_number;
 
+        // Tampilkan modal loading
+        // $('#loadingModal').modal('show');
+
+        // Ambil detail order
+        $.ajax({
+            url: "{{ url('/order/detail') }}/" + invoiceNumber, // Sesuaikan URL API untuk mendapatkan detail order
+            type: 'GET',
+            success: function(response) {
+                // $('#loadingModal').modal('hide');
+
+                // Kosongkan detail order sebelumnya
+                $('#orderDetailBody').empty();
+
+                // Tambahkan detail order baru
+                response.forEach(function(item) {
+                    $('#orderDetailBody').append(`
+                        <tr>
+                            <td>${item.produk.nama_produk}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.produk.harga}</td>
+                        </tr>
+                    `);
+                });
+
+                // Tampilkan modal detail order
+                $('#orderDetailModal').modal('show');
+            },
+            error: function() {
+                // $('#loadingModal').modal('hide');
+                alert('Gagal mengambil detail order');
+            }
+        });
+    });
 });
-
 </script>
 @endpush
 @endsection
