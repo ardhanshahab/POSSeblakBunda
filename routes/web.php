@@ -45,3 +45,4 @@ Route::get('/index', [App\Http\Controllers\pembayaranController::class, 'index']
 Route::post('completeOrder/{id}', [App\Http\Controllers\HomeController::class, 'completeOrder'])->name('completeOrder');
 Route::post('customerLeft/{id}', [App\Http\Controllers\HomeController::class, 'customerLeft'])->name('customerLeft');
 Route::get('/order/detail/{invoice_number}', [App\Http\Controllers\OrderController::class, 'getOrderDetail'])->name('getOrderDetail');
+Route::put('updateMeja/{id}', [App\Http\Controllers\mejaController::class, 'updateMeja'])->name('updateMeja');

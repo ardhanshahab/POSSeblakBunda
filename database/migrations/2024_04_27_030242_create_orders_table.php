@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('no_meja')->nullable();
             $table->string('amount');
             $table->string('status');
+            $table->string('catatan');
             $table->timestamps();
         });
     }

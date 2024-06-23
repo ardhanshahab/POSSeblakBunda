@@ -68,6 +68,7 @@ class orderController extends Controller
             $order->no_meja = $request->orders[0]['no_meja'];
             $order->invoice_number = 'INV-' . time();
             $order->amount = $request->amount;
+            $order->catatan = $request->catatan;
             $order->status = 'Proses Pembuatan Pesanan';
             $order->save();
 

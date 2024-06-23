@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\meja;
+use App\Models\order;
 use Illuminate\Http\Request;
 use App\Models\produk;
 use Illuminate\View\View;
@@ -134,5 +135,29 @@ class mejaController extends Controller
 
         //redirect to index
         return redirect()->route('meja.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function updateMeja(Request $request, $id)
+    {
+        $this->validate($request, [
+            'status'     => 'required|min:1',
+        ]);
+
+        $post = meja::findOrFail($id);
+
+            $post->update([
+                'status'     => $request->status,
+            ]);
+
+                // Set flash message
+         // Temukan pesanan berdasarkan ID
+         $order = Order::with('fcfs')->findOrFail($request->order_id);
+        //  dd($request->all());
+
+         // Perbarui status pesanan
+         $order->status = 'Kosongkan Meja';
+         $order->save();
+
+        return redirect()->back();
     }
 }

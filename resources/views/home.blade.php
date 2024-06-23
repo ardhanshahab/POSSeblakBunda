@@ -30,35 +30,48 @@
                                 @php
                                     $orderDetailsCount = $order->orderDetails->count();
                                 @endphp
-                                @foreach ($order->orderDetails as $index => $o)
-                                    <tr>
-                                        @if ($index == 0)
-                                            <td rowspan="{{ $orderDetailsCount }}">{{ $order->invoice_number }}</td>
-                                            <td rowspan="{{ $orderDetailsCount }}">{{ $order->no_meja }}</td>
-                                        @endif
-                                        <td>{{ $o->produk->nama_produk }}</td>
-                                        @if ($index == 0)
-                                            <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->order_time)->translatedFormat('l, d F Y H:i:s') }}</td>
-                                            <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->order_completed_time)->translatedFormat('l, d F Y H:i:s') }}</td>
-                                            <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->customer_left_time)->translatedFormat('l, d F Y H:i:s') }}</td>
-                                            <td rowspan="{{ $orderDetailsCount }}">
-                                                @if (!$order->fcfs->order_completed_time && !$order->fcfs->customer_left_time)
-                                                    <form action="{{ route('completeOrder', ['id' => $order->id]) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">Pesanan Siap</button>
-                                                    </form>
-                                                @elseif ($order->fcfs->order_completed_time && !$order->fcfs->customer_left_time)
-                                                    <form action="{{ route('customerLeft', ['id' => $order->id]) }}" method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">Pelanggan Pulang</button>
-                                                    </form>
-                                                @else
-                                                    <span class="badge bg-success">Pesanan Selesai</span>
-                                                @endif
-                                            </td>
-                                        @endif
-                                    </tr>
-                                @endforeach
+                               @foreach ($order->orderDetails as $index => $o)
+                               <tr>
+                                   @if ($index == 0)
+                                       <td rowspan="{{ $orderDetailsCount }}">{{ $order->invoice_number }}</td>
+                                       <td rowspan="{{ $orderDetailsCount }}">{{ $order->no_meja }}</td>
+                                   @endif
+                                   <td>{{ $o->produk->nama_produk }}</td>
+                                   @if ($index == 0)
+                                       <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->order_time)->translatedFormat('l, d F Y H:i:s') }}</td>
+                                       <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->order_completed_time)->translatedFormat('l, d F Y H:i:s') }}</td>
+                                       <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->customer_left_time)->translatedFormat('l, d F Y H:i:s') }}</td>
+                                       <td rowspan="{{ $orderDetailsCount }}">
+                                            @if (!$order->fcfs->order_completed_time && !$order->fcfs->customer_left_time)
+                                               <form action="{{ route('completeOrder', ['id' => $order->id]) }}" method="POST">
+                                                   @csrf
+                                                   <button type="submit" class="btn btn-primary">Pesanan Siap</button>
+                                               </form>
+                                            @elseif ($order->fcfs->order_completed_time && !$order->fcfs->customer_left_time)
+                                               <form action="{{ route('customerLeft', ['id' => $order->id]) }}" method="POST">
+                                                   @csrf
+                                                   <button type="submit" class="btn btn-primary">Pelanggan Pulang</button>
+                                               </form>
+                                            @elseif ($order->status == 'Kosongkan Meja')
+                                                <span class="badge bg-success">Pesanan Selesai</span>
+                                            @else
+                                               <form action="{{ route('updateMeja', $order->no_meja) }}" method="POST">
+                                                   @csrf
+                                                   @method('PUT')
+                                                   <input type="hidden" name="status" value="Kosong">
+                                                   <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                                   <button type="submit" class="btn btn-primary">Kosongkan Meja</button>
+                                               </form>
+                                           @endif
+                                       </td>
+                                   @endif
+                               </tr>
+                           @endforeach
+                           <tr style="border-bottom: 1pt solid black;">
+                               <td colspan="1">Catatan</td>
+                               <td colspan="6" class="text-left">{{ $order->catatan }}</td>
+                           </tr>
+
                             @empty
                                 <tr>
                                     <td colspan="7" class="text-center">Belum ada pesanan hari ini</td>

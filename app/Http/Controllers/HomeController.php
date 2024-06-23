@@ -53,7 +53,7 @@ class HomeController extends Controller
         $totalOrders = count($orders);
         $averageOrderTime = $totalOrders ? $totalOrderTime / $totalOrders : 0;
         $averageCustomerLeftTime = $totalOrders ? $totalCustomerLeftTime / $totalOrders : 0;
-
+        // return $order;
         return view('home', compact('orders', 'averageOrderTime', 'averageCustomerLeftTime', 'totalOrderTime', 'totalCustomerLeftTime'));
     }
 
@@ -77,10 +77,23 @@ class HomeController extends Controller
 
     public function customerLeft($id)
     {
-        $order = Fcfs::findOrFail($id);
-        $order->setCustomerLeftTime();
+        // Temukan pesanan berdasarkan ID
+        $order = Order::with('fcfs')->findOrFail($id);
 
-        return redirect()->route('home');
+        // Perbarui status pesanan
+        $order->status = 'Pesanan Selesai';
+        $order->save();
+
+        // Temukan data Fcfs terkait dan perbarui waktu pelanggan meninggalkan meja
+        $fcfs = $order->fcfs;
+        if ($fcfs) {
+            $fcfs->customer_left_time = now();
+            $fcfs->save();
+        }
+
+        // Redirect ke halaman home dengan pesan sukses
+        return redirect()->route('home')->with('message', 'Pesanan berhasil diselesaikan.');
     }
+
 
 }

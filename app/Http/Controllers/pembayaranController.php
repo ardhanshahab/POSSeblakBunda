@@ -42,6 +42,7 @@ class PembayaranController extends Controller
             $order->invoice_number = 'INV-' . time();
             $order->amount = $request->total;
             $order->status = 'Proses Pembuatan Pesanan';
+            $order->catatan = $request->catatan;
             $order->save();
             $products = [];
             foreach ($request->products as $orderItem) {

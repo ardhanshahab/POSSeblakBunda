@@ -39,21 +39,29 @@
                                 </form>
                                 <form action="{{ route('pembayaran.store') }}" method="POST">
                                     @csrf
-                                    <select name="no_meja" id="no_meja" class="form-select">
-                                        <option value="" selected>Pilih Meja</option>
-                                        @foreach ($meja as $post)
-                                            <option value="{{ $post->no_meja }}">{{ $post->no_meja }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="form-group">
+                                        <label for="no_meja">Pilih Meja</label>
+                                        <select name="no_meja" id="no_meja" class="form-control">
+                                            <option value="" selected>Pilih Meja</option>
+                                            @foreach ($meja as $post)
+                                                <option value="{{ $post->no_meja }}">{{ $post->no_meja }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="catatan">Catatan (Topping, Level Kepedasan, dan Request)</label>
+                                        <textarea name="catatan" id="catatan" class="form-control"></textarea>
+                                    </div>
                                     @foreach ($cartItems as $item)
                                         <input type="hidden" name="products[{{ $item->id }}][product_id]" value="{{ $item->id }}">
                                         <input type="hidden" name="products[{{ $item->id }}][name]" value="{{ $item->name }}">
                                         <input type="hidden" name="products[{{ $item->id }}][quantity]" value="{{ $item->quantity }}">
                                         <input type="hidden" name="products[{{ $item->id }}][price]" value="{{ $item->price }}">
-                                        <input type="hidden" name="total" value="{{ $total }}">
                                     @endforeach
+                                    <input type="hidden" name="total" value="{{ $total }}">
                                     <button type="submit" class="btn btn-warning">Proses Pembayaran</button>
                                 </form>
+
                             </div>
                         </div>
                     </div>
