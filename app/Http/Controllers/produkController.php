@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Storage;
 
 class produkController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * index
      *

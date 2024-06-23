@@ -25,7 +25,7 @@ Route::get('/getOrder',[App\Http\Controllers\orderController::class,'getOrder'])
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
+Route::get('/', [App\Http\Controllers\landingpageController::class, 'welcome'])->name('welcome');
 
 Route::resource('/master/kategoriproduk', \App\Http\Controllers\kategoriprodukController::class);
 Route::resource('/master/produk', \App\Http\Controllers\produkController::class);
