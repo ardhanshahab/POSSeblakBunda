@@ -25,16 +25,6 @@ class PembayaranController extends Controller
     {
         // Debugging request data
         // dd($request->all());
-
-        // Validasi input
-        // $request->validate([
-        //     'orders' => 'required|array',
-        //     'orders.*.no_meja' => 'required|integer',
-        //     'orders.*.product_id' => 'required|integer|exists:produk,id',
-        //     'orders.*.quantity' => 'required|integer|min:1',
-        //     'amount' => 'required|numeric|min:0',
-        // ]);
-
         try {
             // Membuat order baru
             $order = new Order();
@@ -68,7 +58,10 @@ class PembayaranController extends Controller
             }
 
             // Update status meja
-            $post = Meja::findOrFail($order->no_meja);
+            $post = Meja::find($request->no_meja);
+            if (!$post) {
+                return response()->json(['message' => 'Failed to create order', 'error' => 'No Meja found for no_meja: ' . $request->no_meja], 404);
+            }
             $post->update(['status' => 'Terisi']);
 
             // Membuat FCFS entry
@@ -94,7 +87,6 @@ class PembayaranController extends Controller
             $pdfPath = storage_path('app/public/receipt.pdf');
             $pdf->save($pdfPath);
 
-
             // Flash message untuk pesan sukses
             Session::flash('message', 'Payment data saved successfully');
 
@@ -104,5 +96,6 @@ class PembayaranController extends Controller
             return response()->json(['message' => 'Failed to create order', 'error' => $e->getMessage()], 500);
         }
     }
+
 }
 
