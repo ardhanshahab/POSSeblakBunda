@@ -10,9 +10,15 @@
                             <span>{{ Date('D,d F Y') }}</span>
                         </div>
                         <div class="col-md-6">
+                            <div class="input-group">
+                                {{-- <div class="float-right"> --}}
+                                    <p class="mx-2 my-auto">Catatan</p>
+                                    <input type="text" name="catatan" id="catatan" class="form-control">
+                                {{-- </div> --}}
+                            </div>
                             <div class="input-group mb-2">
-                                <p class="mx-2">No Meja</p>
-                                <select name="no_meja" id="no_meja" class="form-select">
+                                <p class="mx-2 my-auto">No Meja</p>
+                                <select name="no_meja" id="no_meja" class="form-control">
                                     <option value="" selected>Pilih Meja</option>
                                     @foreach ($meja as $post)
                                         <option value="{{ $post->no_meja }}">{{ $post->no_meja }}</option>
@@ -20,6 +26,7 @@
                                 </select>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -285,13 +292,16 @@
 
                 // Tambahkan amount dengan nilai total
                 var amount = total;
+                var catatan = $('#catatan').val()
+
 
                 $.ajax({
                     type: 'POST',
                     url: '{{ route("order.store") }}',
                     data: {
                         orders: orders,
-                        amount: amount // Tambahkan amount ke dalam data
+                        amount: amount,// Tambahkan amount ke dalam data
+                        catatan: catatan// Tambahkan amount ke dalam data
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

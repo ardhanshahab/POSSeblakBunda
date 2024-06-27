@@ -70,6 +70,8 @@ class orderController extends Controller
             $order->amount = $request->amount;
             $order->catatan = $request->catatan;
             $order->status = 'Proses Pembuatan Pesanan';
+            $order->catatan = $request->catatan;
+
             $order->save();
 
             foreach ($request->orders as $orderItem) {
