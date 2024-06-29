@@ -54,39 +54,41 @@ class produkController extends Controller
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
-{
-    try {
-        // Validate form
-        $this->validate($request, [
-            'image'           => 'image|mimes:jpeg,jpg,png|max:2048',
-            'nama_produk'     => 'required|min:1',
-            'kategori_produk' => 'required|min:1',
-            'harga'           => 'required|numeric|min:1',
-            'quantity'           => 'required|numeric',
-            'deskripsi'       => 'required|min:1'
-        ]);
+    {
+        try {
+            // Validate form
+            $this->validate($request, [
+                'image'           => 'image|mimes:jpeg,jpg,png|max:2048',
+                'nama_produk'     => 'required|min:1',
+                'kategori_produk' => 'required|min:1',
+                'harga'           => 'required|numeric|min:1',
+                // 'quantity'           => 'required|numeric',
+                'deskripsi'       => 'required|min:1'
+            ]);
 
-        // Upload image
-        $image = $request->file('image');
-        $image->storeAs('public/posts', $image->hashName());
+            // Upload image
+            $image = $request->file('image');
+            $image->storeAs('public/posts', $image->hashName());
 
-        // Create product
-        Produk::create([
-            'image'           => $image->hashName(),
-            'nama_produk'     => $request->nama_produk,
-            'kategori_produk' => $request->kategori_produk,
-            'harga'           => $request->harga,
-            'deskripsi'       => $request->deskripsi,
-            'quantity'       => $request->quantity
-        ]);
+            // Create product
+            Produk::create([
+                'image'           => $image->hashName(),
+                'nama_produk'     => $request->nama_produk,
+                'kategori_produk' => $request->kategori_produk,
+                'harga'           => $request->harga,
+                'deskripsi'       => $request->deskripsi,
+                // 'quantity'       => $request->quantity
+            ]);
 
-        // Redirect to index
-        return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Disimpan!']);
-    } catch (\Exception $e) {
-        // Jika terjadi kesalahan, redirect kembali dengan pesan error
-        return redirect()->back()->with(['error' => $e->getMessage()]);
+            // Redirect to index
+            return redirect()->route('produk.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan, redirect kembali dengan pesan error
+        dd($e);
+
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
-}
 
 
     /**
