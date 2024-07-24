@@ -24,7 +24,7 @@ class PembayaranController extends Controller
     public function store(Request $request)
     {
         // Debugging request data
-        // dd($request->all());
+        dd($request->all());
         try {
             // Membuat order baru
             $order = new Order();
@@ -35,11 +35,13 @@ class PembayaranController extends Controller
             $order->catatan = $request->catatan;
             $order->save();
             $products = [];
+            $toppings = [];
             foreach ($request->products as $orderItem) {
                 $detail = new OrderDetail();
                 $detail->product_id = $orderItem['product_id'];
                 $detail->quantity = $orderItem['quantity'];
-
+                $detail->toppings = $orderItem['toppings'];
+                dd($detail->toppings);
                 $product = Produk::find($detail->product_id);
                 if ($product) {
                     $detail->total = $detail->quantity * $product->harga;
@@ -47,7 +49,8 @@ class PembayaranController extends Controller
                         'name' => $product->nama_produk,
                         'quantity' => $detail->quantity,
                         'price' => $product->harga,
-                        'total' => $detail->total
+                        'total' => $detail->total,
+
                     ];
                 } else {
                     return response()->json(['message' => 'Failed to create order', 'error' => 'Invalid product_id'], 500);
@@ -55,6 +58,11 @@ class PembayaranController extends Controller
 
                 $detail->order_id = $order->id;
                 $detail->save();
+
+                // Menyimpan topping terkait
+                // if (isset($orderItem['toppings']) && is_array($orderItem['toppings'])) {
+                //     $detail->toppings()->attach($orderItem['toppings']);
+                // }
             }
 
             // Update status meja
@@ -96,6 +104,7 @@ class PembayaranController extends Controller
             return response()->json(['message' => 'Failed to create order', 'error' => $e->getMessage()], 500);
         }
     }
+
 
 }
 

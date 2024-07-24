@@ -3,28 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\meja;
-use App\Models\produk;
-use Darryldecode\Cart\Facades\CartFacade as cart;
+use App\Models\Meja;
+use App\Models\Produk;
+use App\Models\Topping;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 
 class CartController extends Controller
 {
     public function index()
     {
-        $cartItems = cart::getContent();
-        $meja = meja::where('status', 'kosong')->get();
+        $cartItems = Cart::getContent();
+        // return $cartItems;
+        $meja = Meja::where('status', 'kosong')->get();
 
         return view('cart.index', compact('cartItems', 'meja'));
     }
 
-    public function add(produk $product)
+    public function add(Request $request)
     {
-        // dd($product);
-        cart::add([
+        // dd($request->all());
+        $product = Produk::findOrFail($request->product_id);
+        $toppings = Topping::find($request->toppings);
+
+        $cartItem = Cart::add([
             'id' => $product->id,
             'name' => $product->nama_produk,
             'price' => $product->harga,
             'quantity' => 1,
+            'attributes' => [
+                'toppings' => $toppings,
+            ],
         ]);
 
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
@@ -32,14 +40,14 @@ class CartController extends Controller
 
     public function remove($id)
     {
-        cart::remove($id);
+        Cart::remove($id);
 
         return redirect()->route('cart.index')->with('success', 'Product removed from cart!');
     }
 
     public function clear()
     {
-        cart::clear();
+        Cart::clear();
 
         return redirect()->route('cart.index')->with('success', 'All products removed from cart!');
     }

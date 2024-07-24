@@ -16,4 +16,9 @@ class produk extends Model
         'deskripsi',
         'quantity',
     ];
+
+    public function toppings()
+    {
+        return $this->belongsToMany(Topping::class, 'product_topping');
+    }
 }

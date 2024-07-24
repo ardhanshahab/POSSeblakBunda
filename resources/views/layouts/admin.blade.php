@@ -307,6 +307,7 @@
                       <li><a href="/master/kategoriproduk">Kategori Produk</a></li>
                       <li><a href="/master/produk">Produk</a></li>
                       <li><a href="/master/meja">Meja</a></li>
+                      <li><a href="/toppings">Toppings</a></li>
                       <li><a href="/user">User</a></li>
                     </ul>
                   </li>

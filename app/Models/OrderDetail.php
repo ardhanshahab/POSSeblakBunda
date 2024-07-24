@@ -13,6 +13,7 @@ class OrderDetail extends Model
         'quantity',
         'total',
         'order_id',
+        'toppings',
     ];
 
     public function order()
@@ -22,5 +23,10 @@ class OrderDetail extends Model
     public function produk()
     {
         return $this->belongsTo(produk::class, 'product_id', 'id');
+    }
+
+    public function toppings()
+    {
+        return $this->belongsToMany(Topping::class);
     }
 }
