@@ -27,6 +27,7 @@ class OrderDetail extends Model
 
     public function toppings()
     {
-        return $this->belongsToMany(Topping::class);
+        return $this->belongsToMany(Topping::class, 'order_detail_topping');
     }
+
 }

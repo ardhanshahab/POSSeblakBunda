@@ -276,7 +276,7 @@ a {
                                 <table width="100%" cellpadding="0" cellspacing="0">
                                     <tbody><tr>
                                         <td class="content-block">
-                                            <h2>Terimakasih telah berbelanja di Seblak Bunda</h2>
+                                            <h4>Terimakasih telah berbelanja di Seblak Bunda</h4>
                                         </td>
                                     </tr>
                                     <tr>
@@ -291,7 +291,20 @@ a {
                                                             <tbody>
                                                                 @foreach ($products as $product)
                                                                 <tr>
-                                                                    <td>{{ $product['name'] }} Qty. {{ $product['quantity'] }}</td>
+                                                                    <tr>
+                                                                        <td>{{ $product['name'] }} Qty. {{ $product['quantity'] }}</td>
+                                                                        <td>
+                                                                            @if (!empty($product['toppings']))
+                                                                                <ul>
+                                                                                    @foreach ($product['toppings'] as $topping)
+                                                                                        <li>{{ $topping }}</li>
+                                                                                    @endforeach
+                                                                                </ul>
+                                                                            @else
+                                                                                Tidak ada topping
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
                                                                     <td class="alignright">Rp. {{ $product['price'] }}</td>
                                                                 </tr>
                                                                 @endforeach
