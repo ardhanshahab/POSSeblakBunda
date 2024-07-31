@@ -39,19 +39,39 @@
                 <form id="cartForm" method="POST" action="{{ route('cart.add') }}">
                     @csrf
                     <input type="hidden" name="product_id" id="product_id">
+
                     <div class="form-group">
                         <label>Pilih Topping (Maksimal 3):</label><br>
+
+                        <!-- Toppings tipe makanan -->
+                        <p class="my-2">Makanan</p>
                         @foreach ($toppings as $topping)
-                        <div class="form-check">
-                            <input class="form-check-input topping-checkbox" type="checkbox" name="toppings[]" value="{{ $topping->id }}" id="topping{{ $topping->id }}">
-                            <label class="form-check-label" for="topping{{ $topping->id }}">
-                                {{ $topping->name }}
-                            </label>
-                        </div>
+                            @if ($topping->tipe == 'makanan')
+                                <div class="form-check">
+                                    <input class="form-check-input topping-checkbox" type="checkbox" name="toppings[]" value="{{ $topping->id }}" id="topping{{ $topping->id }}">
+                                    <label class="form-check-label" for="topping{{ $topping->id }}">
+                                        {{ $topping->name }}
+                                    </label>
+                                </div>
+                            @endif
+                        @endforeach
+
+                        <!-- Toppings tipe minuman -->
+                        <p class="my-2">Minuman</p>
+                        @foreach ($toppings as $topping)
+                            @if ($topping->tipe == 'minuman')
+                                <div class="form-check">
+                                    <input class="form-check-input topping-checkbox" type="checkbox" name="toppings[]" value="{{ $topping->id }}" id="topping{{ $topping->id }}">
+                                    <label class="form-check-label" for="topping{{ $topping->id }}">
+                                        {{ $topping->name }}
+                                    </label>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+
             </div>
         </div>
     </div>

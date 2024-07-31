@@ -9,15 +9,15 @@ class Topping extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price'];
+    protected $fillable = ['name', 'price', 'tipe'];
 
     public function products()
     {
         return $this->belongsToMany(Produk::class, 'product_topping');
     }
 
-    public function orderDetails()
+    public function orderDetail()
     {
-        return $this->belongsToMany(OrderDetail::class, 'order_detail_topping');
+        return $this->belongsTo(OrderDetail::class);
     }
 }

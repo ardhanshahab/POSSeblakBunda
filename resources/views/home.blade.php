@@ -31,12 +31,24 @@
                                     $orderDetailsCount = $order->orderDetails->count();
                                 @endphp
                                @foreach ($order->orderDetails as $index => $o)
+                               {{-- {{ $o }} --}}
                                <tr>
                                    @if ($index == 0)
                                        <td rowspan="{{ $orderDetailsCount }}">{{ $order->invoice_number }}</td>
                                        <td rowspan="{{ $orderDetailsCount }}">{{ $order->no_meja }}</td>
                                    @endif
-                                   <td>{{ $o->produk->nama_produk }}</td>
+                                   <td>
+                                    {{ $o->produk->nama_produk }}
+                                    @php
+                                        $toppings = json_decode($o->toppings, true);
+                                    @endphp
+                                    @if (!empty($toppings))
+                                        @foreach ($toppings as $topping)
+                                            ({{ $topping['name'] }} @if (isset($topping['price'])) - {{ $topping['price'] }} @endif)
+                                        @endforeach
+                                    @endif
+                                </td>
+
                                    @if ($index == 0)
                                        <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->order_time)->translatedFormat('l, d F Y H:i:s') }}</td>
                                        <td rowspan="{{ $orderDetailsCount }}">{{ \Carbon\Carbon::parse($order->fcfs->order_completed_time)->translatedFormat('l, d F Y H:i:s') }}</td>

@@ -1,7 +1,7 @@
 @extends('layouts.kasir')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     @if (session('payment_data'))
     <div class="alert alert-success">
         Silahkan scan QRIS atau segera ke kasir.
@@ -26,6 +26,7 @@
                         <th>Name</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>Toppings</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,17 @@
                             <td>{{ $product['name'] }}</td>
                             <td>{{ $product['quantity'] }}</td>
                             <td>{{ $product['price'] }}</td>
+                            <td>
+                                @if (!empty($product['toppings']))
+                                    <ul>
+                                        @foreach ($product['toppings'] as $topping)
+                                            <li>{{ $topping['name'] }} @if (isset($topping['price'])) ({{ $topping['price'] }}) @endif</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    No toppings
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

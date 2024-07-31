@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_detail_topping', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_detail_id')->constrained()->onDelete('cascade');
-            $table->foreignId('topping_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+        Schema::table('toppings', function (Blueprint $table) {
+            $table->string('tipe')->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_detail_topping');
+        Schema::table('toppings', function (Blueprint $table) {
+            //
+        });
     }
 };

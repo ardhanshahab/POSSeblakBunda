@@ -291,28 +291,28 @@ a {
                                                             <tbody>
                                                                 @foreach ($products as $product)
                                                                 <tr>
+                                                                    <td>{{ $product['name'] }} Qty. {{ $product['quantity'] }}</td>
+                                                                    @if (!empty($product['toppings']))
                                                                     <tr>
-                                                                        <td>{{ $product['name'] }} Qty. {{ $product['quantity'] }}</td>
-                                                                        <td>
-                                                                            @if (!empty($product['toppings']))
-                                                                                <ul>
-                                                                                    @foreach ($product['toppings'] as $topping)
-                                                                                        <li>{{ $topping }}</li>
-                                                                                    @endforeach
-                                                                                </ul>
-                                                                            @else
-                                                                                Tidak ada topping
-                                                                            @endif
+                                                                        <td colspan="4">
+                                                                            <strong>Toppings:</strong>
+                                                                            <ul>
+                                                                                @foreach ($product['toppings'] as $topping)
+                                                                                    <li>{{ $topping['name'] }} @if (isset($topping['price'])) ({{ $topping['price'] }}) @endif</li>
+                                                                                @endforeach
+                                                                            </ul>
                                                                         </td>
                                                                     </tr>
-                                                                    <td class="alignright">Rp. {{ $product['price'] }}</td>
+                                                                    @endif
                                                                 </tr>
+                                                                {{-- <td class="alignright">Rp. {{ $product['price'] }}</td> --}}
                                                                 @endforeach
                                                                 <tr class="total">
                                                                     <td class="alignright" width="80%">Total</td>
                                                                     <td class="alignright">Rp. {{ $total }}</td>
                                                                 </tr>
-                                                        </tbody></table>
+                                                            </tbody>
+                                                        </table>
                                                     </td>
                                                 </tr>
                                             </tbody></table>

@@ -15,16 +15,10 @@ class CreateToppingsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('product_topping', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('produk_id')->constrained()->onDelete('cascade');
-            $table->foreignId('topping_id')->constrained()->onDelete('cascade');
-        });
     }
 
     public function down()
     {
-        Schema::dropIfExists('product_topping');
         Schema::dropIfExists('toppings');
     }
 }

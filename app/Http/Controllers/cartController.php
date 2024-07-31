@@ -34,6 +34,8 @@ class CartController extends Controller
                 'toppings' => $toppings,
             ],
         ]);
+        // return $cartItem;
+
 
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
     }
