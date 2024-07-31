@@ -288,10 +288,10 @@
                   <li>
                     <a href="/home">
                       <i class='bx bx-grid-alt' ></i>
-                      <span class="link_name">Dashboard</span>
+                      <span class="link_name">Halaman Konfirmasi Pesanan</span>
                     </a>
                     <ul class="sub-menu blank">
-                      <li><a class="link_name" href="/home">Dashboard</a></li>
+                      <li><a class="link_name" href="/home">Halaman Konfirmasi Pesanan</a></li>
                     </ul>
                   </li>
                   <li>

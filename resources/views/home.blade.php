@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Halaman Konfirmasi Pesanan') }}</div>
 
                 <div class="card-body">
                     <table class="table table-stripped table-bordered text-center">
