@@ -34,7 +34,7 @@ class PembayaranController extends Controller
         $order->amount = $request->total;
         $order->status = 'Proses Pembuatan Pesanan';
         $order->catatan = $request->catatan;
-        // $order->save();
+        $order->save();
 
         $products = [];
 
