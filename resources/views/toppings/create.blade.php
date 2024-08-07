@@ -24,6 +24,13 @@
                                 <option value="minuman">Minuman</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="tipe">Status</label>
+                            <select name="tipe" id="tipe" class="form-select">
+                                <option value="tersedia">Tersedia</option>
+                                <option value="habis">Habis</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>

@@ -11,12 +11,19 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Nama</label>
                             <input type="text" name="name" class="form-control" id="name" value="{{ $topping->name }}" required>
                         </div>
                         <div class="form-group">
-                            <label for="price">Price</label>
+                            <label for="price">Harga</label>
                             <input type="number" step="0.01" name="price" class="form-control" id="price" value="{{ $topping->price }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipe">Status</label>
+                            <select name="tipe" id="tipe" class="form-select">
+                                <option value="tersedia">Tersedia</option>
+                                <option value="habis">Habis</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>

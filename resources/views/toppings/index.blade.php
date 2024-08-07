@@ -15,14 +15,16 @@
                     @endif
                     <table class="table table-bordered">
                         <tr>
-                            <th>Name</th>
-                            <th>Price</th>
+                            <th>Nama</th>
+                            <th>Harga</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         @foreach ($toppings as $topping)
                         <tr>
                             <td>{{ $topping->name }}</td>
                             <td>{{ $topping->price }}</td>
+                            <td>{{ $topping->status }}</td>
                             <td>
                                 <a href="{{ route('toppings.edit', $topping->id) }}" class="btn btn-primary">Edit</a>
                                 <form action="{{ route('toppings.destroy', $topping->id) }}" method="POST" style="display:inline-block;">

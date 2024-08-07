@@ -9,7 +9,7 @@ class Topping extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'price', 'tipe'];
+    protected $fillable = ['name', 'price', 'tipe', 'status'];
 
     public function products()
     {

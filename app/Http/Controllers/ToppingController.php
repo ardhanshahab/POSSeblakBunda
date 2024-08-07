@@ -22,6 +22,7 @@ class ToppingController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'status' => 'required',
             'price' => 'required|numeric',
         ]);
 
@@ -39,6 +40,7 @@ class ToppingController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'status' => 'required',
             'price' => 'required|numeric',
         ]);
 
