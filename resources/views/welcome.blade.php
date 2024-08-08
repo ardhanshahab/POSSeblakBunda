@@ -6,7 +6,7 @@
         <div class="col-md-12">
           <h1 class="site-heading site-animate mb-3">Welcome To Seblak Bunda Raziel</h1>
           <h2 class="h5 site-subheading mb-5 site-animate">Come and eat well with our delicious &amp; spicy foods.</h2>
-          <p><a href="https://colorlib.com/" target="_blank" class="btn btn-outline-white btn-lg site-animate" data-toggle="modal" data-target="#reservationModal">Order Now!</a></p>
+          <p><a href="/listmenu" class="btn btn-outline-white btn-lg site-animate">Order Now!</a></p>
         </div>
       </div>
     </div>
@@ -30,11 +30,11 @@
                 <div class="media d-block mb-4 text-center site-media site-animate border-0">
                     <img src="/storage/posts/{{ $item->image }}" alt="Free Template by colorlib.com" class="img-fluid">
                     <div class="media-body p-md-5 p-4">
-                    <h5 class="text-primary">$19.50</h5>
+                    <h5 class="text-primary">Rp. {{$item->harga}}</h5>
                     <h5 class="mt-0 h4">{{ $item->nama_produk }}</h5>
-                    {{-- <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p> --}}
+                    <p class="mb-4">{{$item->variant}}</p>
 
-                    <p class="mb-0"><a href="#" class="btn btn-primary btn-sm">Order Now!</a></p>
+                    <p class="mb-0"><a href="/listmenu" class="btn btn-primary btn-sm">Order Now!</a></p>
                     </div>
                 </div>
                 </div>

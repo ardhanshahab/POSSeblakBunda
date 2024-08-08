@@ -25,8 +25,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="tipe">Status</label>
-                            <select name="tipe" id="tipe" class="form-select">
+                            <label for="status">Status</label>
+                            <select name="status" id="status" class="form-select">
                                 <option value="tersedia">Tersedia</option>
                                 <option value="habis">Habis</option>
                             </select>

@@ -17,6 +17,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>Harga</th>
+                            <th>Tipe</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -24,6 +25,7 @@
                         <tr>
                             <td>{{ $topping->name }}</td>
                             <td>{{ $topping->price }}</td>
+                            <td>{{ $topping->tipe }}</td>
                             <td>{{ $topping->status }}</td>
                             <td>
                                 <a href="{{ route('toppings.edit', $topping->id) }}" class="btn btn-primary">Edit</a>
