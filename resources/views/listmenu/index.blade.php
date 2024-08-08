@@ -46,7 +46,7 @@
                         <!-- Toppings tipe makanan -->
                         <p class="my-2">Makanan</p>
                         @foreach ($toppings as $topping)
-                            @if ($topping->tipe == 'makanan')
+                            @if ($topping->tipe == 'makanan' && $topping->status == 'tersedia')
                                 <div class="form-check">
                                     <input class="form-check-input topping-checkbox" type="checkbox" name="toppings[]" value="{{ $topping->id }}" id="topping{{ $topping->id }}">
                                     <label class="form-check-label" for="topping{{ $topping->id }}">
@@ -59,7 +59,7 @@
                         <!-- Toppings tipe minuman -->
                         <p class="my-2">Minuman</p>
                         @foreach ($toppings as $topping)
-                            @if ($topping->tipe == 'minuman')
+                            @if ($topping->tipe == 'minuman' && $topping->status == 'tersedia')
                                 <div class="form-check">
                                     <input class="form-check-input topping-checkbox" type="checkbox" name="toppings[]" value="{{ $topping->id }}" id="topping{{ $topping->id }}">
                                     <label class="form-check-label" for="topping{{ $topping->id }}">
